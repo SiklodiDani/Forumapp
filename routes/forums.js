@@ -1,20 +1,37 @@
 const express = require('express')
-const { route } = require('.')
+const forum = require('../models/forum')
 const router = express.Router()
+const Forum = require('../models/forum')
 
 // All forums route
-router.get('/', (req, res) => {
-    res.render('forums/index')
+router.get('/', async (req, res) => {
+    try{
+        const forums = await Forum.find({})
+        res.render('forums/index', {forums: forums})
+    }catch{
+        res.redirect('/')
+    }
 })
 
 // New forum route
 router.get('/new', (req, res) => {
-    res.render('forums/new')
+    res.render('forums/new', { forum: new Forum() })
 })
 
 // Create forum route
-router.post('/', (req, res) => {
-    res.send('Create')
+router.post('/', async (req, res) => {
+    const forum = new Forum({
+        name: req.body.name
+    })
+    try{
+    	const newForum = await forum.save()
+        res.redirect('forums')
+    }catch{
+		res.render('forums/new', {
+            forum: forum,
+            errorMessage: 'Error creating forum'
+        })
+    }
 })
 
 module.exports = router
