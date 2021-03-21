@@ -9,6 +9,7 @@ const bodyParser = require('body-parser')
 
 const indexRouter = require('./routes/index')
 const forumRouter = require('./routes/forums')
+const topicRouter = require('./routes/topics')
 
 
 app.set('view engine', 'ejs')
@@ -26,5 +27,6 @@ db.once('open', () => console.log('Connected to Mongoose'))
 
 app.use('/', indexRouter)
 app.use('/forums', forumRouter)
+app.use('/topics', topicRouter)
 
 app.listen(process.env.PORT || 3000)

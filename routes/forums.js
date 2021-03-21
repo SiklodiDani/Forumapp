@@ -21,7 +21,7 @@ router.get('/new', (req, res) => {
 // Create forum route
 router.post('/', async (req, res) => {
     const forum = new Forum({
-        name: req.body.name
+        title: req.body.title
     })
     try{
     	const newForum = await forum.save()

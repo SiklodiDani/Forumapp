@@ -1,0 +1,28 @@
+<div>
+	<label>Forum</label>
+	<select name="forum">
+		<%forums.forEach(forum => {%> 
+    		<%if (forum.id === topic.forum) {%>
+    			<option selected label="<%=forum.title%>" value="<%=forum.id%>">
+			<%} else {%> 
+    	 		<option label="<%=forum.title%>" value="<%=forum.id%>">
+    		<% } %> 
+		<%})%>  
+	</select>
+</div>
+
+<div>
+	<label>Title</label>
+	<input type="text" name="title" value="<%= topic.title %>">
+</div>
+
+<div>
+	<label>Description</label>
+	<textarea name="description" ><%= topic.description %> </textarea>
+</div>
+
+<div>
+    <label>Cover</label>
+    <input type="file" name="cover">
+</div>
+
