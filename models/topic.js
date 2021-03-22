@@ -1,5 +1,7 @@
 const mongoose = require('mongoose')
 
+const topicImageBasePath = 'uploads/topicImages'
+
 const topicSchema = new mongoose.Schema({
     title: {
         type: String,
@@ -25,3 +27,4 @@ const topicSchema = new mongoose.Schema({
 })
 
 module.exports = mongoose.model('Topic', topicSchema)
+module.exports.topicImageBasePath = topicImageBasePath
